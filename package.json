@@ -1,0 +1,48 @@
+{
+  "name": "telegram-scraper",
+  "version": "1.0.1",
+  "description": "Telegram Channel Scraper",
+  "main": "dist/cjs/telegram-scraper.js",
+  "module": "dist/mjs/telegram-scraper.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/telegram-scraper.js",
+      "require": "./dist/cjs/telegram-scraper.js"
+    }
+  },
+  "scripts": {
+    "start": "npm run dev-node",
+    "removedir": "node -e \"var fs = require('fs'); process.argv.slice(1).forEach((fpath) => { if (fs.existsSync(fpath)) fs.rmdirSync(fpath, { recursive: true }) }); process.exit(0);\" dist",
+    "build-all": "tsc -p tsconfig-mjs.json && tsc -p tsconfig-cjs.json && node -e \"fs.mkdirSync('dist/cjs', { recursive: true }); fs.mkdirSync('dist/mjs', { recursive: true }); fs.writeFileSync('dist/cjs/package.json', JSON.stringify({type: 'commonjs'})); fs.writeFileSync('dist/mjs/package.json', JSON.stringify({type: 'module'}));\"",
+    "build": "npm run removedir && npm run build-all",
+    "build-dev": "npm run removedir && tsc -p tsconfig.json",
+    "dev-node": "nodemon -e js,ts --watch src --watch test --exec \"npm run build-dev && node public/test/server.js\"",
+    "dev-node-esm": "nodemon -e js,ts --watch src --watch test --exec \"npm run build-dev && node public/test/server-mjs.js\"",
+    "dev": "npm run dev-node",
+    "test": "npm run dev-node"
+  },
+  "files": [
+    "dist/",
+    "LICENSE"
+  ],
+  "keywords": [
+    "telegram",
+    "telegram-scraper",
+    "telegram-channel-scraper",
+    "telegram-to-json",
+    "telegram-channel-to-json",
+    "telegram-bot",
+    "web-scraper",
+    "web-scraping",
+    "html-parser",
+    "bot",
+    "scraper"
+  ],
+  "author": "alphaline",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
