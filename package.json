@@ -1,5 +1,5 @@
 {
-  "name": "telegram-scraper",
+  "name": "tg-scraper",
   "version": "1.0.1",
   "description": "Telegram Channel Scraper",
   "main": "dist/cjs/telegram-scraper.js",
@@ -38,7 +38,7 @@
     "bot",
     "scraper"
   ],
-  "author": "alphaline",
+  "author": "kalithedev",
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^3.0.3",
